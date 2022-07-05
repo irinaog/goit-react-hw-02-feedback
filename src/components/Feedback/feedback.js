@@ -12,11 +12,21 @@ export class Feedback extends Component{
      
 
     hendleClick = evt => {
-        console.log(evt.target.name)
-        this.setState(prevState => {
+        const opt = evt.target.name;
+        opt === 'good' && this.setState(prevState => {
             return {
                 good: prevState.good + 1,
-            }
+            };  
+        });
+        opt === 'neutral' && this.setState(prevState => {
+            return {
+                neutral: prevState.neutral + 1,
+            };
+        });
+        opt === 'bad' && this.setState(prevState => {
+            return {
+                bad: prevState.bad + 1,
+            };
         });
     };    
         
@@ -52,20 +62,23 @@ export class Feedback extends Component{
 
         return (<>
             
-           <Section title={'Please leave feedback'}> </Section>
+           <Section title={'Please leave feedback'}> 
             
             <FeedbackOptions
                 options={Object.keys(this.state)}
             onLeaveFeedback={this.hendleClick}
-            />
+                />
+                </Section>
 
+             <Section title={'Statistics'}>
              <Statistics
                 good={good}
                 neutral={neutral}
                 bad={bad}
                 total={this.countTotalFeedback()}
                 positivePercentage = { this.countPositiveFeedbackPercentage()}
-            /> 
+                /> 
+                </Section>
             </>
            
         )
