@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Notiflix from 'notiflix';
 import { Statistics } from "components/Statistics/statistics";
 import { FeedbackOptions } from "components/FeedbackOptions/feedbackOptions";
 import { Section } from "components/Section/section";
+
+
 export class App extends Component{
     state = {
         good: 0,
@@ -56,18 +57,18 @@ export class App extends Component{
                 />
             </Section>
             
-            {/* {this.hendleClick?
+            {good === 0 & neutral === 0 & bad === 0 ?
 
-            <Section title={'Statistics'}>
-             <Statistics
-                good={good}
-                neutral={neutral}
-                bad={bad}
-                total={this.countTotalFeedback()}
-                positivePercentage = { this.countPositiveFeedbackPercentage()}
-                /> 
-                </Section>
-                :Notiflix.Notify.failure('Qui timide rogat docet negare')} */}
+                <p>There is no feedback</p>
+                : <Section title={'Statistics'}>
+                    <Statistics
+                        good={good}
+                        neutral={neutral}
+                        bad={bad}
+                        total={this.countTotalFeedback()}
+                        positivePercentage={this.countPositiveFeedbackPercentage()}
+                    />
+                </Section>}
             </>
            
         )
