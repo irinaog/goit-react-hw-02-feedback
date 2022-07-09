@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Statistics } from "components/Statistics/statistics";
-import { FeedbackOptions } from "components/FeedbackOptions/feedbackOptions";
-import { Section } from "components/Section/section";
-
+import { Statistics } from "components/Statistics/Statistics";
+import { FeedbackOptions } from "components/FeedbackOptions/FeedbackOptions";
+import { Section } from "components/Section/Section";
+import { Notification } from "./Notification/Notification";
 
 export class App extends Component{
     state = {
@@ -14,22 +14,11 @@ export class App extends Component{
      
 
     hendleClick = evt => {
-        const opt = evt.target.name;
-        opt === 'good' && this.setState(prevState => {
-            return {
-                good: prevState.good + 1,
-            };  
-        });
-        opt === 'neutral' && this.setState(prevState => {
-            return {
-                neutral: prevState.neutral + 1,
-            };
-        });
-        opt === 'bad' && this.setState(prevState => {
-            return {
-                bad: prevState.bad + 1,
-            };
-        });
+        const { name } = evt.target;
+        this.setState(prevState => {
+            return{
+            [name] :   prevState[name]+1,
+        }});
     };    
 
 
@@ -59,7 +48,7 @@ export class App extends Component{
             
             {good === 0 & neutral === 0 & bad === 0 ?
 
-                <p>There is no feedback</p>
+                <Notification message="There is no feedback"/>
                 : <Section title={'Statistics'}>
                     <Statistics
                         good={good}
